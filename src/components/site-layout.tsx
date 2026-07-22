@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Heart, Mail, Phone, Instagram, MessageCircle, Facebook } from "lucide-react";
 import { useState, type ReactNode } from "react";
-import { CONTACT, LOGO } from "@/lib/site-data";
+import { CONTACT, LOGO, MISSION } from "@/lib/site-data";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
