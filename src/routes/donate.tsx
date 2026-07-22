@@ -1,13 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CheckCircle2, Heart, Banknote, Smartphone, Copy } from "lucide-react";
 import { CONTACT } from "@/lib/site-data";
+import { addDonation, fileToDataUrl } from "@/lib/admin-store";
 import { Reveal, SectionHeader } from "@/components/ui-bits";
 
 const OPTIONS = [
   { id: "one", label: "One-time", desc: "A single gift, any amount." },
   { id: "monthly", label: "Monthly", desc: "Sustain our programs year-round." },
-  { id: "sponsor", label: "Sponsor a child", desc: "$25/month — school, food, care." },
+  { id: "sponsor", label: "Sponsor a child", desc: "$25/month — school, food, care.", link: "/sponsor-a-child" },
   { id: "family", label: "Feed a family", desc: "$40 feeds a family for two weeks." },
   { id: "edu", label: "Support education", desc: "Books, uniforms, and fees." },
   { id: "med", label: "Medical outreach", desc: "Fund a community medical camp." },
@@ -36,6 +37,33 @@ function DonatePage() {
 
   const copy = (t: string) => navigator.clipboard?.writeText(t);
 
+  const optLabel = OPTIONS.find((o) => o.id === opt)?.label ?? opt;
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const proofFile = (fd.get("proof") as File)?.size ? (fd.get("proof") as File) : null;
+    let proof: string | undefined;
+    let proofName: string | undefined;
+    if (proofFile) {
+      proof = await fileToDataUrl(proofFile);
+      proofName = proofFile.name;
+    }
+
+    addDonation({
+      name: String(fd.get("name")),
+      email: String(fd.get("email")),
+      amount: Number(amount) || 0,
+      type: optLabel,
+      paymentMethod: String(fd.get("paymentMethod") || ""),
+      reference: String(fd.get("reference") || ""),
+      proof,
+      proofName,
+      message: String(fd.get("message") || ""),
+    });
+    setDone(true);
+  };
+
   return (
     <div>
       <section className="py-20 bg-gradient-brand text-white">
@@ -52,10 +80,22 @@ function DonatePage() {
               <SectionHeader title="Choose your gift" center={false} />
               <div className="grid sm:grid-cols-2 gap-4">
                 {OPTIONS.map((o) => (
-                  <button key={o.id} onClick={() => setOpt(o.id)} className={`text-left rounded-2xl border p-5 transition-all ${opt === o.id ? "border-accent bg-accent/5 shadow-warm" : "border-border bg-card hover:border-accent/50"}`}>
-                    <div className="flex items-center gap-2 font-bold">{opt === o.id && <CheckCircle2 className="h-4 w-4 text-accent" />}{o.label}</div>
-                    <div className="text-sm text-muted-foreground mt-1">{o.desc}</div>
-                  </button>
+                  o.link ? (
+                    <Link
+                      key={o.id}
+                      to={o.link}
+                      className="text-left rounded-2xl border p-5 transition-all border-border bg-card hover:border-accent/50 block"
+                    >
+                      <div className="font-bold">{o.label}</div>
+                      <div className="text-sm text-muted-foreground mt-1">{o.desc}</div>
+                      <div className="text-xs text-primary font-semibold mt-2">View children →</div>
+                    </Link>
+                  ) : (
+                    <button key={o.id} onClick={() => setOpt(o.id)} className={`text-left rounded-2xl border p-5 transition-all ${opt === o.id ? "border-accent bg-accent/5 shadow-warm" : "border-border bg-card hover:border-accent/50"}`}>
+                      <div className="flex items-center gap-2 font-bold">{opt === o.id && <CheckCircle2 className="h-4 w-4 text-accent" />}{o.label}</div>
+                      <div className="text-sm text-muted-foreground mt-1">{o.desc}</div>
+                    </button>
+                  )
                 ))}
               </div>
             </Reveal>
@@ -81,7 +121,7 @@ function DonatePage() {
                     <div className="mt-3 text-sm text-muted-foreground">Account Number</div>
                     <div className="flex items-center gap-2">
                       <div className="font-mono text-lg font-bold">{CONTACT.bank.account}</div>
-                      <button onClick={() => copy(CONTACT.bank.account)} className="text-primary hover:opacity-70"><Copy className="h-4 w-4" /></button>
+                      <button type="button" onClick={() => copy(CONTACT.bank.account)} className="text-primary hover:opacity-70"><Copy className="h-4 w-4" /></button>
                     </div>
                   </div>
                   <div className="rounded-2xl bg-card border border-border p-5">
@@ -90,7 +130,7 @@ function DonatePage() {
                       {CONTACT.phones.map((p) => (
                         <div key={p} className="flex items-center gap-2">
                           <div className="font-mono font-semibold">{p}</div>
-                          <button onClick={() => copy(p)} className="text-primary hover:opacity-70"><Copy className="h-4 w-4" /></button>
+                          <button type="button" onClick={() => copy(p)} className="text-primary hover:opacity-70"><Copy className="h-4 w-4" /></button>
                         </div>
                       ))}
                     </div>
@@ -106,14 +146,19 @@ function DonatePage() {
                 <div className="rounded-3xl bg-card border border-border p-8 text-center shadow-elegant sticky top-24">
                   <CheckCircle2 className="mx-auto h-14 w-14 text-accent" />
                   <h3 className="mt-3 text-2xl font-extrabold">Thank you!</h3>
-                  <p className="mt-2 text-muted-foreground">We received your donation notice and will send a receipt shortly.</p>
+                  <p className="mt-2 text-muted-foreground">We received your donation notice and will send a receipt shortly. Our admin team has been notified.</p>
                 </div>
               ) : (
-                <form onSubmit={(e) => { e.preventDefault(); setDone(true); }} className="rounded-3xl bg-card border border-border p-8 shadow-sm sticky top-24 space-y-4">
+                <form onSubmit={onSubmit} className="rounded-3xl bg-card border border-border p-8 shadow-sm sticky top-24 space-y-4">
                   <h3 className="text-xl font-extrabold flex items-center gap-2"><Heart className="h-5 w-5 text-accent" fill="currentColor" /> Confirm your gift</h3>
                   <p className="text-sm text-muted-foreground">Upload your proof of payment (optional).</p>
                   <input required name="name" placeholder="Your name" className="w-full rounded-xl border border-input bg-background px-4 py-2.5" />
                   <input required type="email" name="email" placeholder="Email" className="w-full rounded-xl border border-input bg-background px-4 py-2.5" />
+                  <select name="paymentMethod" className="w-full rounded-xl border border-input bg-background px-4 py-2.5">
+                    <option value="">Payment method</option>
+                    <option value="Equity Bank">Equity Bank</option>
+                    <option value="Mobile Money">Mobile Money</option>
+                  </select>
                   <input name="reference" placeholder="Transaction reference" className="w-full rounded-xl border border-input bg-background px-4 py-2.5" />
                   <input type="file" name="proof" accept="image/*,.pdf" className="w-full text-sm file:mr-4 file:rounded-full file:border-0 file:bg-secondary file:px-4 file:py-2 file:font-semibold" />
                   <textarea name="message" rows={3} placeholder="Message (optional)" className="w-full rounded-xl border border-input bg-background px-4 py-2.5" />

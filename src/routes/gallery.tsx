@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { GALLERY } from "@/lib/site-data";
+import { useGallery } from "@/lib/use-site-content";
 import { Reveal } from "@/components/ui-bits";
 
-const CATS = ["All", "Outreach", "Education", "Health", "Volunteers", "Children"];
+const CATS = ["All", "Outreach", "Education", "Health", "Volunteers", "Children", "Events", "Community outreach"];
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -22,9 +22,10 @@ export const Route = createFileRoute("/gallery")({
 });
 
 function GalleryPage() {
+  const gallery = useGallery();
   const [cat, setCat] = useState("All");
   const [lightbox, setLightbox] = useState<string | null>(null);
-  const items = cat === "All" ? GALLERY : GALLERY.filter((g) => g.cat === cat);
+  const items = cat === "All" ? gallery : gallery.filter((g) => g.cat === cat);
   return (
     <div>
       <section className="py-20 bg-secondary">

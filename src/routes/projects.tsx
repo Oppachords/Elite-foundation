@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
-import { PROJECTS } from "@/lib/site-data";
+import { useProjects } from "@/lib/use-site-content";
 import { Reveal } from "@/components/ui-bits";
 
 const STATUS_STYLE: Record<string, string> = {
@@ -25,6 +25,7 @@ export const Route = createFileRoute("/projects")({
 });
 
 function ProjectsPage() {
+  const projects = useProjects();
   return (
     <div>
       <section className="py-20 bg-secondary">
@@ -36,7 +37,7 @@ function ProjectsPage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2">
-          {PROJECTS.map((p, i) => {
+          {projects.map((p, i) => {
             const pct = Math.round((p.raised / p.budget) * 100);
             return (
               <Reveal key={p.slug} delay={i * 0.05}>

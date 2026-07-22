@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { Reveal, SectionHeader } from "@/components/ui-bits";
+import { addVolunteer } from "@/lib/admin-store";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Name too short").max(100),
@@ -44,6 +45,15 @@ function VolunteerPage() {
       return;
     }
     setErrors({});
+    addVolunteer({
+      name: parsed.data.name,
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      profession: parsed.data.profession,
+      skills: parsed.data.skills,
+      availability: parsed.data.availability,
+      interest: parsed.data.interest,
+    });
     setDone(true);
   };
 

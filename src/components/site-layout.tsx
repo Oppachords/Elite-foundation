@@ -1,7 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Heart, Mail, Phone, Instagram, MessageCircle, Facebook } from "lucide-react";
 import { useState, type ReactNode } from "react";
-import { CONTACT } from "@/lib/site-data";
+import { CONTACT, LOGO } from "@/lib/site-data";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { to: "/gallery", label: "Gallery" },
   { to: "/stories", label: "Stories" },
   { to: "/events", label: "Events" },
+  { to: "/sponsor-a-child", label: "Sponsor" },
   { to: "/volunteer", label: "Volunteer" },
   { to: "/partners", label: "Partners" },
   { to: "/contact", label: "Contact" },
@@ -20,9 +21,7 @@ const NAV_LINKS = [
 function Logo() {
   return (
     <Link to="/" className="flex items-center gap-2 group">
-      <div className="h-10 w-10 rounded-full bg-gradient-brand flex items-center justify-center shadow-elegant group-hover:scale-105 transition-transform">
-        <Heart className="h-5 w-5 text-white" fill="currentColor" />
-      </div>
+      <img src={LOGO} alt="Elite Foundation logo" className="h-10 w-10 rounded-full object-cover shadow-elegant group-hover:scale-105 transition-transform" />
       <div className="leading-tight">
         <div className="font-[family-name:var(--font-display)] font-extrabold text-primary text-lg tracking-tight">Elite Foundation</div>
         <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Where Hope Meets Action</div>
@@ -98,9 +97,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded-full bg-gradient-brand flex items-center justify-center">
-              <Heart className="h-5 w-5 text-white" fill="currentColor" />
-            </div>
+            <img src={LOGO} alt="Elite Foundation logo" className="h-10 w-10 rounded-full object-cover" />
             <div className="font-[family-name:var(--font-display)] font-extrabold text-xl">Elite Foundation</div>
           </div>
           <p className="mt-4 text-white/70 max-w-md text-sm leading-relaxed">
@@ -119,6 +116,7 @@ function Footer() {
           <ul className="space-y-2 text-sm text-white/70">
             <li><Link to="/programs" className="hover:text-accent">Programs</Link></li>
             <li><Link to="/projects" className="hover:text-accent">Projects</Link></li>
+            <li><Link to="/sponsor-a-child" className="hover:text-accent">Sponsor a Child</Link></li>
             <li><Link to="/volunteer" className="hover:text-accent">Volunteer</Link></li>
             <li><Link to="/donate" className="hover:text-accent">Donate</Link></li>
             <li><Link to="/partners" className="hover:text-accent">Partner With Us</Link></li>
@@ -163,6 +161,13 @@ function FloatingWhatsApp() {
 }
 
 export function SiteLayout({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname.startsWith("/admin");
+
+  if (isAdmin) {
+    return <div className="min-h-screen bg-background">{children}</div>;
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Nav />
