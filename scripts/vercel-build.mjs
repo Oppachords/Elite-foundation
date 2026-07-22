@@ -20,4 +20,6 @@ if (url) {
   console.warn("  Expected: POSTGRES_URL (from Vercel Neon) or DATABASE_URL\n");
 }
 
+process.env.NITRO_PRESET = "vercel";
+
 execSync("npx vite build", { stdio: "inherit", env: process.env });

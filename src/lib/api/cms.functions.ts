@@ -158,21 +158,36 @@ export const adminLogout = createServerFn({ method: "POST" }).handler(async () =
 });
 
 export const getSponsoredChildren = createServerFn({ method: "GET" }).handler(async () => {
-  const db = getDb();
-  const rows = await db.select().from(sponsoredChildren).orderBy(desc(sponsoredChildren.createdAt));
-  return rows.map(mapChild);
+  try {
+    const db = getDb();
+    const rows = await db.select().from(sponsoredChildren).orderBy(desc(sponsoredChildren.createdAt));
+    return rows.map(mapChild);
+  } catch (error) {
+    console.error("getSponsoredChildren failed:", error);
+    return [];
+  }
 });
 
 export const getProjects = createServerFn({ method: "GET" }).handler(async () => {
-  const db = getDb();
-  const rows = await db.select().from(projects).orderBy(desc(projects.createdAt));
-  return rows.map(mapProject);
+  try {
+    const db = getDb();
+    const rows = await db.select().from(projects).orderBy(desc(projects.createdAt));
+    return rows.map(mapProject);
+  } catch (error) {
+    console.error("getProjects failed:", error);
+    return [];
+  }
 });
 
 export const getGallery = createServerFn({ method: "GET" }).handler(async () => {
-  const db = getDb();
-  const rows = await db.select().from(galleryItems).orderBy(desc(galleryItems.createdAt));
-  return rows.map(mapGallery);
+  try {
+    const db = getDb();
+    const rows = await db.select().from(galleryItems).orderBy(desc(galleryItems.createdAt));
+    return rows.map(mapGallery);
+  } catch (error) {
+    console.error("getGallery failed:", error);
+    return [];
+  }
 });
 
 export const submitDonation = createServerFn({ method: "POST" })
