@@ -213,9 +213,9 @@ export const STORIES = [
   },
   {
     name: "Peter M.",
-    role: "Volunteer",
+    role: "Beneficiary — Iganga",
     image: img3,
-    quote: "Serving with Elite Foundation reminded me what community really means. Every visit changes someone — including me.",
+    quote: "When Elite Foundation reached our home, everything changed. They brought food when we were hungry and hope when we had none.",
   },
   {
     name: "Grandma Rose",
