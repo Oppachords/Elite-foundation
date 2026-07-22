@@ -22,4 +22,5 @@ if (url) {
 
 process.env.NITRO_PRESET = "vercel";
 
+execSync("node scripts/generate-seo-files.mjs", { stdio: "inherit", env: process.env });
 execSync("npx vite build", { stdio: "inherit", env: process.env });

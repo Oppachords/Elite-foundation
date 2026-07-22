@@ -11,10 +11,15 @@ node_modules
 dist
 dist-ssr
 .output
+.vercel
 .vinxi
 .tanstack/**
 .nitro
 *.local
+
+# Generated at build time (scripts/generate-seo-files.mjs)
+public/robots.txt
+public/sitemap.xml
 
 # Wrangler / Cloudflare
 .wrangler/
