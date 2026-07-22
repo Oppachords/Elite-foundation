@@ -45,18 +45,31 @@ export const IMAGES = {
 export const HERO_IMAGES = [img1, img3, img5, img6, img8, img10, img11, img12, img13, img14];
 
 export const STATS = [
-  { value: 4000, suffix: "+", label: "Lives Impacted" },
-  { value: 25, suffix: "+", label: "Communities Reached" },
-  { value: 500, suffix: "+", label: "Children Supported" },
-  { value: 100, suffix: "+", label: "Volunteers" },
+  { value: 800, suffix: "+", label: "Lives Impacted" },
+  { value: 5, suffix: "+", label: "Communities Reached" },
+  { value: 100, suffix: "+", label: "Children Supported" },
+  { value: 20, suffix: "+", label: "Volunteers" },
+];
+
+export const MISSION =
+  "To empower and uplift vulnerable communities through sustainable outreach programs, education, health services, and youth empowerment initiatives.";
+
+export const VISION =
+  "A society where every individual, especially the underserved, has access to opportunities, dignity, and a voice.";
+
+export const COMMUNITIES_SERVED = [
+  "Rural families in Iganga and Kaliro districts",
+  "School-going children in Iganga",
+  "Persons with disabilities and elderly without care",
+  "Vulnerable youth in Kaliro district",
 ];
 
 export const FOCUS_AREAS = [
-  { title: "Community Outreach & Relief", desc: "Direct support to rural families through food, essentials, and care visits.", icon: "HeartHandshake" },
-  { title: "Youth & Women Empowerment", desc: "Skills, mentorship, and leadership training that unlocks opportunity.", icon: "Users" },
+  { title: "Community Outreach & Relief", desc: "Community outreach and relief for rural families in Iganga and Kaliro.", icon: "HeartHandshake" },
+  { title: "Youth & Women Empowerment", desc: "Youth and women empowerment through skills, mentorship, and leadership.", icon: "Users" },
   { title: "Education Support", desc: "School supplies, fees assistance, and materials for underserved children.", icon: "GraduationCap" },
-  { title: "Health & Sanitation", desc: "Medical camps, hygiene awareness, and community wellness programs.", icon: "Stethoscope" },
-  { title: "Livelihood & Skills", desc: "Vocational, business, and entrepreneurship training for sustainable income.", icon: "Sprout" },
+  { title: "Health & Sanitation Awareness", desc: "Basic health screening, hygiene sensitization, and community wellness.", icon: "Stethoscope" },
+  { title: "Livelihood & Skills Development", desc: "Practical business, vocational, and life skills for sustainable livelihoods.", icon: "Sprout" },
 ];
 
 export const CORE_VALUES = [
@@ -77,31 +90,31 @@ export const PROGRAMS = [
     image: img2,
     short: "Monthly food distribution in rural communities.",
     long: "Every month, our volunteers deliver food packages to vulnerable families in Iganga and Kaliro. A single package feeds a family of five for two weeks.",
-    progress: 68,
+    progress: 45,
   },
   {
     slug: "girls-in-school",
     title: "Girls in School Campaign",
     image: img8,
-    short: "Providing school materials and educational support to girls in underserved areas.",
-    long: "We supply uniforms, books, sanitary kits, and cover school fees for girls at risk of dropping out — keeping them learning and safe.",
-    progress: 54,
+    short: "Supplying school materials to girls in underserved areas.",
+    long: "We provide school materials and educational support to girls in underserved areas, including Iganga District.",
+    progress: 40,
   },
   {
     slug: "youth-skills",
-    title: "Youth Skills Workshop",
+    title: "Youth Skill Workshop",
     image: img5,
-    short: "Business, ICT, vocational skills, entrepreneurship and leadership training.",
-    long: "Hands-on workshops that equip young people with practical, income-generating skills and the mindset to build their own futures.",
-    progress: 42,
+    short: "Equipping youth with practical business and life skills.",
+    long: "Hands-on workshops for vulnerable youth — especially in Kaliro — with practical business, vocational, and life skills.",
+    progress: 35,
   },
   {
     slug: "medical-outreach",
     title: "Medical Outreach",
     image: img6,
-    short: "Basic health screening, awareness, hygiene campaigns and community wellness.",
-    long: "Free medical camps in partnership with local clinicians — screenings, referrals, and health education for entire villages.",
-    progress: 76,
+    short: "Basic health screening and hygiene sensitization.",
+    long: "Community medical outreach with basic health screening, health awareness, and hygiene sensitization.",
+    progress: 50,
   },
 ];
 
@@ -122,54 +135,54 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: "iganga-food-relief-2025",
-    title: "Iganga Food Relief 2025",
+    title: "Iganga Food Relief",
     hero: img1,
     gallery: [img1, img2, img7, img9],
     location: "Iganga District",
-    budget: 8000,
-    raised: 5450,
+    budget: 1600,
+    raised: 950,
     status: "Ongoing",
-    description: "A six-month rolling food distribution supporting 300+ families across rural Iganga sub-counties.",
+    description: "Monthly food distribution for rural families in Iganga District through our Feed a Family Program.",
   },
   {
     slug: "kaliro-youth-skills",
-    title: "Kaliro Youth Skills Camp",
+    title: "Kaliro Youth Skill Workshop",
     hero: img5,
     gallery: [img5, img3, img11],
     location: "Kaliro District",
-    budget: 4500,
-    raised: 1200,
-    status: "Upcoming",
-    description: "A two-week intensive equipping 120 young people with ICT, tailoring, and entrepreneurship skills.",
+    budget: 900,
+    raised: 350,
+    status: "Ongoing",
+    description: "Equipping vulnerable youth in Kaliro with practical business and life skills.",
   },
   {
     slug: "kampala-medical-camp",
-    title: "Kampala Community Medical Camp",
+    title: "Medical Outreach — Kampala",
     hero: img6,
     gallery: [img6, img4, img12],
     location: "Kampala",
-    budget: 3200,
-    raised: 3200,
+    budget: 640,
+    raised: 640,
     status: "Completed",
-    description: "A one-day free clinic delivering screenings, blood-pressure checks, and health education to 400+ residents.",
+    description: "Basic health screening and hygiene sensitization for community members.",
   },
   {
     slug: "girls-back-to-school",
-    title: "Girls Back-to-School Drive",
+    title: "Girls in School — Iganga",
     hero: img8,
     gallery: [img8, img4, img14],
     location: "Iganga",
-    budget: 5000,
-    raised: 2100,
+    budget: 1000,
+    raised: 420,
     status: "Ongoing",
-    description: "Uniforms, books, and fees for 200 girls to return to class for the new term.",
+    description: "Supplying school materials to school-going girls in underserved areas of Iganga.",
   },
 ];
 
 export const COMMUNITIES = [
-  { name: "Iganga", x: 62, y: 55, projects: 4, beneficiaries: "2,100+" },
-  { name: "Kaliro", x: 66, y: 48, projects: 3, beneficiaries: "1,300+" },
-  { name: "Kampala", x: 38, y: 62, projects: 2, beneficiaries: "600+" },
+  { name: "Iganga", x: 62, y: 55, projects: 2, detail: "Rural families & school-going children" },
+  { name: "Kaliro", x: 66, y: 48, projects: 2, detail: "Vulnerable youth & rural families" },
+  { name: "Kampala", x: 38, y: 62, projects: 1, detail: "Head office & outreach base" },
 ];
 
 export const TEAM = [
@@ -231,5 +244,5 @@ export const CONTACT = {
   instagram: "Elitefoundation001",
   whatsapp: "256786443879",
   location: "Kampala, Uganda",
-  bank: { name: "Equity Bank", account: "1039103735170" },
+  bank: { name: "Equity Bank", account: "1039103735170", label: "Equity Account number" },
 };

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Heart, HeartHandshake, Users, GraduationCap, Stethoscope, Sprout, Quote } from "lucide-react";
-import { HERO_IMAGES, STATS, FOCUS_AREAS, PROGRAMS, STORIES } from "@/lib/site-data";
+import { HERO_IMAGES, STATS, FOCUS_AREAS, PROGRAMS, STORIES, MISSION, VISION } from "@/lib/site-data";
 import { CountUp, Reveal, SectionHeader } from "@/components/ui-bits";
 
 const ICONS: Record<string, typeof Heart> = { HeartHandshake, Users, GraduationCap, Stethoscope, Sprout };
@@ -52,8 +52,8 @@ function Hero() {
             Where Hope <span className="text-accent">Meets Action</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-            Empowering vulnerable communities through education, healthcare, youth empowerment
-            and sustainable development.
+            Empowering vulnerable communities through education, health services, youth empowerment,
+            and sustainable outreach across Uganda.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link to="/donate" className="inline-flex items-center gap-2 rounded-full bg-accent text-accent-foreground px-7 py-3.5 font-semibold shadow-warm hover:scale-105 transition-transform">
@@ -96,11 +96,12 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <Reveal>
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Our Mission</div>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold text-foreground">A society where every voice matters.</h2>
+            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold text-foreground">Where hope meets action.</h2>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              We empower and uplift vulnerable communities through sustainable outreach, education,
-              health services, and youth empowerment — because dignity and opportunity should not
-              be a privilege.
+              {MISSION}
+            </p>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed italic">
+              Our vision: {VISION}
             </p>
             <div className="mt-8 flex gap-4">
               <Link to="/about" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 font-semibold hover:brightness-110 transition">
@@ -144,7 +145,7 @@ function Home() {
       {/* Programs preview */}
       <section className="py-24 bg-secondary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader eyebrow="Programs" title="What we're building right now" description="Active initiatives across Iganga, Kaliro and Kampala." />
+          <SectionHeader eyebrow="Programs" title="Ongoing programs & initiatives" description="Active work in Iganga, Kaliro, and Kampala." />
           <div className="grid gap-8 md:grid-cols-2">
             {PROGRAMS.map((p, i) => (
               <Reveal key={p.slug} delay={i * 0.05}>

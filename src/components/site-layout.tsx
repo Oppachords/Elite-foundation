@@ -105,8 +105,7 @@ function Footer() {
             <div className="font-[family-name:var(--font-display)] font-extrabold text-xl">Elite Foundation</div>
           </div>
           <p className="mt-4 text-white/70 max-w-md text-sm leading-relaxed">
-            Empowering vulnerable communities in Uganda through sustainable outreach, education,
-            healthcare, and youth empowerment. Founded 4 April 2023, Kampala.
+            {MISSION} Founded 4 April 2023, Kampala, Uganda.
           </p>
           <div className="mt-6 flex items-center gap-3">
             <a href={`https://instagram.com/${CONTACT.instagram}`} target="_blank" rel="noreferrer" aria-label="Instagram" className="h-10 w-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors"><Instagram className="h-4 w-4" /></a>

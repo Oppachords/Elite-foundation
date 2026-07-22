@@ -71,7 +71,7 @@ function DonatePage() {
       <section className="py-20 bg-gradient-brand text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-extrabold max-w-3xl">Your generosity, their tomorrow.</h1>
-          <p className="mt-4 text-lg text-white/90 max-w-2xl">Choose how you want to give. 100% of your gift funds programs on the ground.</p>
+          <p className="mt-4 text-lg text-white/90 max-w-2xl">Choose how you want to give. Your gift supports our outreach programs on the ground.</p>
         </div>
       </section>
 
@@ -120,7 +120,7 @@ function DonatePage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="rounded-2xl bg-card border border-border p-5">
                     <div className="flex items-center gap-3"><Banknote className="h-6 w-6 text-primary" /> <div className="font-bold">{CONTACT.bank.name}</div></div>
-                    <div className="mt-3 text-sm text-muted-foreground">Account Number</div>
+                    <div className="mt-3 text-sm text-muted-foreground">{CONTACT.bank.label}</div>
                     <div className="flex items-center gap-2">
                       <div className="font-mono text-lg font-bold">{CONTACT.bank.account}</div>
                       <button type="button" onClick={() => copy(CONTACT.bank.account)} className="text-primary hover:opacity-70"><Copy className="h-4 w-4" /></button>
@@ -158,7 +158,7 @@ function DonatePage() {
                   <input required type="email" name="email" placeholder="Email" className="w-full rounded-xl border border-input bg-background px-4 py-2.5" />
                   <select name="paymentMethod" className="w-full rounded-xl border border-input bg-background px-4 py-2.5">
                     <option value="">Payment method</option>
-                    <option value="Equity Bank">Equity Bank</option>
+                    <option value="Equity Bank">Equity Account number 1039103735170</option>
                     <option value="Mobile Money">Mobile Money</option>
                   </select>
                   <input name="reference" placeholder="Transaction reference" className="w-full rounded-xl border border-input bg-background px-4 py-2.5" />

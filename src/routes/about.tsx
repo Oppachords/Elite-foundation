@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, ShieldCheck, Users, Sun, HandHeart, Sparkles, Lightbulb, ClipboardCheck, Target, Eye, Calendar, MapPin } from "lucide-react";
-import { CORE_VALUES, TEAM, HERO_IMAGES } from "@/lib/site-data";
+import { CORE_VALUES, TEAM, HERO_IMAGES, MISSION, VISION, COMMUNITIES_SERVED } from "@/lib/site-data";
 import { Reveal, SectionHeader } from "@/components/ui-bits";
 
 const ICONS: Record<string, typeof Heart> = { Heart, ShieldCheck, Users, Sun, HandHeart, Sparkles, Lightbulb, ClipboardCheck };
@@ -28,8 +28,8 @@ function About() {
             <div className="text-xs uppercase tracking-[0.25em] text-white/80">About Us</div>
             <h1 className="mt-3 text-5xl md:text-6xl font-extrabold max-w-3xl">People-first. Community-led. Uganda-rooted.</h1>
             <p className="mt-5 max-w-2xl text-white/90 text-lg">
-              Elite Foundation exists to make sure no one is invisible — to build dignity, opportunity,
-              and hope with the communities we walk alongside.
+              Elite Foundation empowers vulnerable communities in Uganda through outreach, education,
+              health services, and youth empowerment — founded 4 April 2023 in Kampala.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 text-sm">
               <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2"><Calendar className="h-4 w-4" /> Founded 4 April 2023</span>
@@ -47,8 +47,7 @@ function About() {
               <Target className="h-10 w-10 text-primary" />
               <h2 className="mt-4 text-3xl font-extrabold">Mission</h2>
               <p className="mt-4 text-muted-foreground leading-relaxed text-lg">
-                To empower and uplift vulnerable communities through sustainable outreach programs,
-                education, health services, and youth empowerment initiatives.
+                {MISSION}
               </p>
             </div>
           </Reveal>
@@ -57,8 +56,7 @@ function About() {
               <Eye className="h-10 w-10" />
               <h2 className="mt-4 text-3xl font-extrabold">Vision</h2>
               <p className="mt-4 leading-relaxed text-lg text-white/95">
-                A society where every individual, especially the underserved, has access to
-                opportunities, dignity, and a voice.
+                {VISION}
               </p>
             </div>
           </Reveal>
@@ -78,8 +76,22 @@ function About() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Communities served */}
       <section className="py-24 bg-secondary">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader eyebrow="Reach" title="Communities we serve" />
+          <ul className="grid gap-3 md:grid-cols-2 max-w-3xl">
+            {COMMUNITIES_SERVED.map((item, i) => (
+              <Reveal key={item} delay={i * 0.05}>
+                <li className="rounded-xl bg-card border border-border px-5 py-4">{item}</li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="Core Values" title="What we stand on." />
           <div className="grid gap-5 grid-cols-2 md:grid-cols-4">

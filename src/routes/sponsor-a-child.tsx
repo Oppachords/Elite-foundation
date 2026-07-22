@@ -161,7 +161,7 @@ function DonateModal({ child, onClose, onSuccess }: { child: Child; onClose: () 
       >
         <h3 className="text-xl font-extrabold">Sponsor {child.name}</h3>
         <p className="text-sm text-muted-foreground">
-          Transfer to {CONTACT.bank.name} ({CONTACT.bank.account}) or Mobile Money ({CONTACT.phones.join(", ")}), then confirm below.
+          Transfer to {CONTACT.bank.label} {CONTACT.bank.account} or Mobile Money ({CONTACT.phones.join(", ")}), then confirm below.
         </p>
 
         <div className="flex flex-wrap gap-2">
@@ -181,7 +181,7 @@ function DonateModal({ child, onClose, onSuccess }: { child: Child; onClose: () 
         <input required type="email" name="email" placeholder="Email" className="w-full rounded-xl border border-input px-4 py-2.5" />
         <select name="paymentMethod" className="w-full rounded-xl border border-input px-4 py-2.5">
           <option value="">Payment method</option>
-          <option value="Equity Bank">Equity Bank</option>
+          <option value="Equity Bank">Equity Account number 1039103735170</option>
           <option value="Mobile Money">Mobile Money</option>
         </select>
         <input name="reference" placeholder="Transaction reference" className="w-full rounded-xl border border-input px-4 py-2.5" />

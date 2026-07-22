@@ -1,27 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { COMMUNITIES } from "@/lib/site-data";
+import { COMMUNITIES, COMMUNITIES_SERVED } from "@/lib/site-data";
 import { CountUp, Reveal, SectionHeader } from "@/components/ui-bits";
 
 const IMPACT_NUMBERS = [
-  { label: "Children Supported", value: 500 },
-  { label: "Families Fed", value: 800 },
-  { label: "Women Empowered", value: 320 },
-  { label: "Youth Trained", value: 260 },
-  { label: "Schools Reached", value: 18 },
-  { label: "Medical Camps", value: 12 },
-  { label: "Volunteers", value: 100 },
-  { label: "Partner Organizations", value: 15 },
+  { label: "Children Supported", value: 100 },
+  { label: "Families Fed", value: 160 },
+  { label: "Youth Trained", value: 52 },
+  { label: "Medical Outreaches", value: 3 },
+  { label: "Volunteers", value: 20 },
+  { label: "Communities Reached", value: 5 },
 ];
 
 export const Route = createFileRoute("/impact")({
   head: () => ({
     meta: [
       { title: "Impact — Elite Foundation" },
-      { name: "description", content: "Numbers, communities, and stories that show the reach of Elite Foundation across Uganda." },
+      { name: "description", content: "Communities served by Elite Foundation across Iganga, Kaliro and Kampala, Uganda." },
       { property: "og:title", content: "Our Impact" },
-      { property: "og:description", content: "See where Elite Foundation is active and how far your support reaches." },
+      { property: "og:description", content: "See where Elite Foundation is active and who we serve." },
       { property: "og:url", content: "/impact" },
     ],
     links: [{ rel: "canonical", href: "/impact" }],
@@ -36,12 +34,12 @@ function ImpactPage() {
       <section className="py-20 bg-gradient-brand text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-extrabold max-w-3xl">Impact you can count.</h1>
-          <p className="mt-4 text-lg text-white/90 max-w-2xl">Every number is a person, a family, a village whose life has moved forward.</p>
+          <p className="mt-4 text-lg text-white/90 max-w-2xl">Founded in April 2023, we serve vulnerable communities across Iganga, Kaliro, and Kampala.</p>
         </div>
       </section>
 
       <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 gap-6">
           {IMPACT_NUMBERS.map((n, i) => (
             <Reveal key={n.label} delay={i * 0.04}>
               <div className="rounded-2xl bg-card border border-border p-6 text-center hover:shadow-elegant transition-all">
@@ -55,11 +53,23 @@ function ImpactPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-secondary">
+      <section className="py-16 bg-secondary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader eyebrow="Communities Served" title="Where our work happens" description="Hover a location to see our footprint." />
+          <SectionHeader eyebrow="Who we serve" title="Communities served" />
+          <ul className="grid gap-3 md:grid-cols-2 max-w-4xl mx-auto">
+            {COMMUNITIES_SERVED.map((item, i) => (
+              <Reveal key={item} delay={i * 0.05}>
+                <li className="rounded-xl bg-card border border-border px-5 py-4 text-foreground/90">{item}</li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader eyebrow="Locations" title="Where our work happens" description="Hover a location to learn more." />
           <div className="relative mx-auto max-w-3xl aspect-[4/5] rounded-3xl bg-card border border-border p-6 shadow-sm">
-            {/* Simplified Uganda outline */}
             <svg viewBox="0 0 100 100" className="w-full h-full">
               <path
                 d="M20 20 Q35 12 55 15 Q75 18 82 30 Q88 45 82 60 Q78 75 65 82 Q50 88 35 82 Q20 76 15 60 Q10 42 20 20 Z"
@@ -81,13 +91,13 @@ function ImpactPage() {
               ))}
             </svg>
             {hover && (
-              <div className="absolute top-6 right-6 rounded-xl bg-primary text-primary-foreground px-4 py-3 shadow-elegant text-sm">
+              <div className="absolute top-6 right-6 rounded-xl bg-primary text-primary-foreground px-4 py-3 shadow-elegant text-sm max-w-xs">
                 {(() => {
                   const c = COMMUNITIES.find((x) => x.name === hover)!;
                   return (
                     <>
                       <div className="font-bold">{c.name}</div>
-                      <div className="text-white/85 text-xs mt-1">{c.projects} projects · {c.beneficiaries} beneficiaries</div>
+                      <div className="text-white/85 text-xs mt-1">{c.detail}</div>
                     </>
                   );
                 })()}
