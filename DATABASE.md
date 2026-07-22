@@ -26,8 +26,9 @@ Apply to **Production**, **Preview**, and **Development**.
 Push to GitHub or trigger a redeploy in Vercel. The `vercel-build` script will:
 
 1. Push the Drizzle schema to Neon (`drizzle-kit push`)
-2. Seed default projects and gallery (`scripts/seed.ts`)
-3. Build the site
+2. Build the site
+
+Projects and gallery use bundled site assets until you add content via the admin CMS. Sponsored children, donations, and volunteers are stored in Neon immediately.
 
 ## 4. Test admin on live site
 

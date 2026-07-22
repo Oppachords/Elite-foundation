@@ -4,9 +4,8 @@ import { normalizeDatabaseEnv } from "../src/lib/db/env.server";
 const url = normalizeDatabaseEnv();
 
 if (url) {
-  console.log("Database URL found — running migrations and seed...");
+  console.log("Database URL found — pushing schema...");
   execSync("npx drizzle-kit push", { stdio: "inherit" });
-  execSync("npx tsx scripts/seed.ts", { stdio: "inherit" });
 } else {
   console.warn("\n⚠ No database URL found.");
   console.warn("  Expected one of: DATABASE_URL, POSTGRES_URL, POSTGRES_URL_NON_POOLING");
