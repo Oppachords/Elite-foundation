@@ -1,7 +1,11 @@
 import { defineConfig } from "drizzle-kit";
-import { getDatabaseUrl } from "./src/lib/db/env.server";
 
-const url = getDatabaseUrl();
+const url =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_URL_NON_POOLING ||
+  process.env.POSTGRES_PRISMA_URL ||
+  process.env.NEON_DATABASE_URL;
 
 export default defineConfig({
   out: "./drizzle",
