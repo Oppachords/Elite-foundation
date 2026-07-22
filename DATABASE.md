@@ -5,16 +5,19 @@
 1. Go to [console.neon.tech](https://console.neon.tech) and create a project (or use Vercel → Storage → Create Database → Neon).
 2. Copy the **pooled connection string** (must include `?sslmode=require`).
 
-## 2. Add Vercel environment variables
+## 2. Connect Neon to your Vercel project
 
-In your Vercel project → **Settings → Environment Variables**, add:
+If you created Neon via **Vercel Storage**, confirm it is **linked to this app** (not just created in the team). Vercel injects `POSTGRES_URL` automatically — you do **not** need to manually add `DATABASE_URL`.
+
+Still add these in **Settings → Environment Variables**:
 
 | Variable | Value |
 |----------|-------|
-| `DATABASE_URL` | Your Neon pooled connection string |
 | `ADMIN_USERNAME` | `Admin` |
 | `ADMIN_PASSWORD` | `ErickAlpha@1` |
 | `ADMIN_SESSION_SECRET` | A long random string (e.g. 32+ chars) |
+
+Optional: if using manual Neon instead of Vercel Storage, set `DATABASE_URL` to your pooled connection string.
 
 Apply to **Production**, **Preview**, and **Development**.
 

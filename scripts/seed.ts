@@ -1,11 +1,12 @@
 import "dotenv/config";
+import { normalizeDatabaseEnv } from "../src/lib/db/env.server";
 import { getDb } from "../src/lib/db/index.server";
 import { galleryItems, projects } from "../src/lib/db/schema";
 import { GALLERY, PROJECTS } from "../src/lib/site-data";
 
 async function seed() {
-  if (!process.env.DATABASE_URL) {
-    throw new Error("DATABASE_URL is required to seed the database.");
+  if (!normalizeDatabaseEnv()) {
+    throw new Error("No database URL found. Set DATABASE_URL or POSTGRES_URL.");
   }
 
   const db = getDb();
