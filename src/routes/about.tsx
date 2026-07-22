@@ -115,16 +115,20 @@ function About() {
           <div className="grid gap-8 grid-cols-2 md:grid-cols-4">
             {TEAM.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.05}>
-                <div className="text-center">
-                  <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-brand flex items-center justify-center">
+                <div className="group text-center">
+                  <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-brand flex items-center justify-center shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-elegant group-hover:ring-2 group-hover:ring-accent/50">
                     {m.image ? (
-                      <CoverImage src={m.image} alt={m.name} className="w-full h-full" />
+                      <CoverImage
+                        src={m.image}
+                        alt={m.name}
+                        className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+                      />
                     ) : (
                       <div className="text-white text-5xl font-extrabold">{m.initials}</div>
                     )}
                   </div>
-                  <div className="mt-4 font-bold text-lg">{m.name}</div>
-                  <div className="text-sm text-muted-foreground">{m.role}</div>
+                  <div className="mt-4 font-bold text-lg transition-colors duration-300 group-hover:text-primary">{m.name}</div>
+                  <div className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">{m.role}</div>
                 </div>
               </Reveal>
             ))}

@@ -134,8 +134,12 @@ function Footer() {
             <button className="rounded-full bg-accent px-4 py-2 text-sm font-semibold hover:brightness-105">Join</button>
           </form>
           <div className="mt-6 space-y-2 text-sm text-white/70">
-            <div className="flex items-center gap-2"><Mail className="h-4 w-4" /> {CONTACT.email}</div>
-            <div className="flex items-center gap-2"><Phone className="h-4 w-4" /> {CONTACT.phones[0]}</div>
+            <div className="flex items-center gap-2"><Mail className="h-4 w-4 shrink-0" /> {CONTACT.email}</div>
+            {CONTACT.phones.map((phone) => (
+              <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-accent transition-colors">
+                <Phone className="h-4 w-4 shrink-0" /> {phone}
+              </a>
+            ))}
           </div>
         </div>
       </div>

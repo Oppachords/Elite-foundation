@@ -12,6 +12,8 @@ import img11 from "@/assets/img11.jpeg";
 import img12 from "@/assets/img12.jpeg";
 import img13 from "@/assets/img13.jpeg";
 import img14 from "@/assets/img14.jpeg";
+import img15 from "@/assets/img15.jpeg";
+import img16 from "@/assets/img16.jpeg";
 import logo from "@/assets/logo.png";
 import director from "@/assets/Director.jpeg";
 import programsManager from "@/assets/Programs manager.jpeg";
@@ -35,6 +37,8 @@ export const IMAGES = {
   img12,
   img13,
   img14,
+  img15,
+  img16,
   logo,
   director,
   programsManager,
@@ -95,7 +99,7 @@ export const PROGRAMS = [
   {
     slug: "feed-a-family",
     title: "Feed a Family Program",
-    image: img2,
+    image: img8,
     short: "Monthly food distribution in rural communities.",
     long: "Every month, our volunteers deliver food packages to vulnerable families in Iganga and Kaliro. A single package feeds a family of five for two weeks.",
     progress: 45,
@@ -103,7 +107,7 @@ export const PROGRAMS = [
   {
     slug: "girls-in-school",
     title: "Girls in School Campaign",
-    image: img8,
+    image: img16,
     short: "Supplying school materials to girls in underserved areas.",
     long: "We provide school materials and educational support to girls in underserved areas, including Iganga District.",
     progress: 40,
@@ -111,7 +115,7 @@ export const PROGRAMS = [
   {
     slug: "youth-skills",
     title: "Youth Skill Workshop",
-    image: img5,
+    image: img15,
     short: "Equipping youth with practical business and life skills.",
     long: "Hands-on workshops for vulnerable youth — especially in Kaliro — with practical business, vocational, and life skills.",
     progress: 35,
@@ -194,10 +198,10 @@ export const COMMUNITIES = [
 ];
 
 export const TEAM = [
-  { name: "The Director", role: "Director & Founder", image: director, initials: "TD" },
-  { name: "Programs Manager", role: "Programs Manager", image: programsManager, initials: "PM" },
-  { name: "Finance Lead", role: "Finance", image: finance, initials: "FL" },
-  { name: "Communications Lead", role: "Communications & Public Relations", image: communications, initials: "CL" },
+  { name: "Kirunda Eric", role: "Director", image: director, initials: "KE" },
+  { name: "Kakaire Joshua", role: "Finance", image: finance, initials: "KJ" },
+  { name: "Kibole Fred", role: "Communications Lead", image: communications, initials: "KF" },
+  { name: "Mukisa John Jackson", role: "Programs Manager", image: programsManager, initials: "MJ" },
 ];
 
 export const STORIES = [
@@ -250,7 +254,7 @@ export const CONTACT = {
   email: "Elitefoundation183@gmail.com",
   phones: ["+256786443879", "+256757696884"],
   instagram: "Elitefoundation001",
-  whatsapp: "256786443879",
+  whatsapp: "256757696884",
   location: "Kampala, Uganda",
   bank: { name: "Equity Bank", account: "1039103735170", label: "Equity Account number" },
 };

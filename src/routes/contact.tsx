@@ -46,7 +46,7 @@ function ContactPage() {
               ))}
               <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="flex items-center gap-4 rounded-2xl bg-card border border-border p-5 hover:shadow-elegant transition-all">
                 <MessageCircle className="h-6 w-6 text-accent" />
-                <div><div className="text-xs text-muted-foreground">WhatsApp</div><div className="font-semibold">Chat with us</div></div>
+                <div><div className="text-xs text-muted-foreground">WhatsApp</div><div className="font-semibold">+256757696884</div></div>
               </a>
               <a href={`https://instagram.com/${CONTACT.instagram}`} target="_blank" rel="noreferrer" className="flex items-center gap-4 rounded-2xl bg-card border border-border p-5 hover:shadow-elegant transition-all">
                 <Instagram className="h-6 w-6 text-accent" />
