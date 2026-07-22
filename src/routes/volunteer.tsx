@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { Reveal, SectionHeader } from "@/components/ui-bits";
-import { addVolunteer } from "@/lib/admin-store";
+import { submitVolunteer } from "@/lib/api/cms.functions";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Name too short").max(100),
@@ -33,7 +33,7 @@ function VolunteerPage() {
   const [done, setDone] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
@@ -45,14 +45,16 @@ function VolunteerPage() {
       return;
     }
     setErrors({});
-    addVolunteer({
-      name: parsed.data.name,
-      email: parsed.data.email,
-      phone: parsed.data.phone,
-      profession: parsed.data.profession,
-      skills: parsed.data.skills,
-      availability: parsed.data.availability,
-      interest: parsed.data.interest,
+    await submitVolunteer({
+      data: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        profession: parsed.data.profession,
+        skills: parsed.data.skills,
+        availability: parsed.data.availability,
+        interest: parsed.data.interest,
+      },
     });
     setDone(true);
   };

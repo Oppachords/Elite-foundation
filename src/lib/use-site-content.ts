@@ -1,32 +1,27 @@
-import { useEffect, useState } from "react";
-import { getStore, subscribeStore, type SponsoredChild } from "./admin-store";
-import { PROJECTS, GALLERY, type Project } from "./site-data";
+import { useQuery } from "@tanstack/react-query";
+import { getGallery, getProjects, getSponsoredChildren } from "./api/cms.functions";
+import { GALLERY, PROJECTS } from "./site-data";
 
-export function useSiteContent() {
-  const [store, setStore] = useState(getStore);
-
-  useEffect(() => subscribeStore(() => setStore(getStore())), []);
-
-  return {
-    children: store.children,
-    projects: store.projects.length ? store.projects : PROJECTS,
-    gallery: store.gallery.length ? store.gallery : GALLERY,
-    donations: store.donations,
-    volunteers: store.volunteers,
-  };
+export function useSponsoredChildren() {
+  const { data } = useQuery({
+    queryKey: ["sponsored-children"],
+    queryFn: () => getSponsoredChildren(),
+  });
+  return data ?? [];
 }
 
-export function useSponsoredChildren(): SponsoredChild[] {
-  const { children } = useSiteContent();
-  return children;
-}
-
-export function useProjects(): Project[] {
-  const { projects } = useSiteContent();
-  return projects;
+export function useProjects() {
+  const { data } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () => getProjects(),
+  });
+  return data?.length ? data : PROJECTS;
 }
 
 export function useGallery() {
-  const { gallery } = useSiteContent();
-  return gallery;
+  const { data } = useQuery({
+    queryKey: ["gallery"],
+    queryFn: () => getGallery(),
+  });
+  return data?.length ? data : GALLERY;
 }

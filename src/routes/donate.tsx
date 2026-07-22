@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CheckCircle2, Heart, Banknote, Smartphone, Copy } from "lucide-react";
 import { CONTACT } from "@/lib/site-data";
-import { addDonation, fileToDataUrl } from "@/lib/admin-store";
+import { submitDonation, fileToDataUrl } from "@/lib/api/cms.functions";
 import { Reveal, SectionHeader } from "@/components/ui-bits";
 
 const OPTIONS = [
@@ -50,16 +50,18 @@ function DonatePage() {
       proofName = proofFile.name;
     }
 
-    addDonation({
-      name: String(fd.get("name")),
-      email: String(fd.get("email")),
-      amount: Number(amount) || 0,
-      type: optLabel,
-      paymentMethod: String(fd.get("paymentMethod") || ""),
-      reference: String(fd.get("reference") || ""),
-      proof,
-      proofName,
-      message: String(fd.get("message") || ""),
+    await submitDonation({
+      data: {
+        name: String(fd.get("name")),
+        email: String(fd.get("email")),
+        amount: Number(amount) || 0,
+        type: optLabel,
+        paymentMethod: String(fd.get("paymentMethod") || "") || undefined,
+        reference: String(fd.get("reference") || "") || undefined,
+        proof,
+        proofName,
+        message: String(fd.get("message") || "") || undefined,
+      },
     });
     setDone(true);
   };

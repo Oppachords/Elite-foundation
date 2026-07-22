@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CheckCircle2, Heart } from "lucide-react";
 import { useSponsoredChildren } from "@/lib/use-site-content";
-import { addDonation, fileToDataUrl } from "@/lib/admin-store";
+import { submitDonation, fileToDataUrl } from "@/lib/api/cms.functions";
 import { CONTACT, IMAGES } from "@/lib/site-data";
 import { Reveal, SectionHeader } from "@/components/ui-bits";
 
@@ -134,18 +134,20 @@ function DonateModal({ child, onClose, onSuccess }: { child: Child; onClose: () 
       proofName = proofFile.name;
     }
 
-    addDonation({
-      name: String(fd.get("name")),
-      email: String(fd.get("email")),
-      amount,
-      type: "Sponsor a child",
-      childId: child.id,
-      childName: child.name,
-      paymentMethod: String(fd.get("paymentMethod") || ""),
-      reference: String(fd.get("reference") || ""),
-      proof,
-      proofName,
-      message: String(fd.get("message") || ""),
+    await submitDonation({
+      data: {
+        name: String(fd.get("name")),
+        email: String(fd.get("email")),
+        amount,
+        type: "Sponsor a child",
+        childId: child.id,
+        childName: child.name,
+        paymentMethod: String(fd.get("paymentMethod") || "") || undefined,
+        reference: String(fd.get("reference") || "") || undefined,
+        proof,
+        proofName,
+        message: String(fd.get("message") || "") || undefined,
+      },
     });
     onSuccess();
   };
