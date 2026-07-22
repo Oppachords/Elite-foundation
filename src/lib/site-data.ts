@@ -199,9 +199,9 @@ export const COMMUNITIES = [
 
 export const TEAM = [
   { name: "Kirunda Eric", role: "Director", image: director, initials: "KE" },
+  { name: "Mukisa John Jackson", role: "Programs Manager", image: programsManager, initials: "MJ" },
   { name: "Kakaire Joshua", role: "Finance", image: finance, initials: "KJ" },
   { name: "Kibole Fred", role: "Communications Lead", image: communications, initials: "KF" },
-  { name: "Mukisa John Jackson", role: "Programs Manager", image: programsManager, initials: "MJ" },
 ];
 
 export const STORIES = [
