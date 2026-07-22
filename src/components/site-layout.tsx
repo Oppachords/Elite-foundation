@@ -20,11 +20,15 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2 group">
-      <img src={LOGO} alt="Elite Foundation logo" className="h-10 w-10 rounded-full object-cover shadow-elegant group-hover:scale-105 transition-transform" />
+    <Link to="/" className="flex items-center gap-2 group shrink-0">
+      <img src={LOGO} alt="Elite Foundation logo" className="h-10 w-10 lg:h-8 lg:w-8 rounded-full object-cover shadow-elegant group-hover:scale-105 transition-transform" />
       <div className="leading-tight">
-        <div className="font-[family-name:var(--font-display)] font-extrabold text-primary text-lg tracking-tight">Elite Foundation</div>
-        <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Where Hope Meets Action</div>
+        <div className="font-[family-name:var(--font-display)] font-extrabold text-primary text-lg lg:text-sm tracking-tight whitespace-nowrap">
+          Elite Foundation
+        </div>
+        <div className="text-[10px] uppercase tracking-widest text-muted-foreground lg:hidden">
+          Where Hope Meets Action
+        </div>
       </div>
     </Link>
   );
