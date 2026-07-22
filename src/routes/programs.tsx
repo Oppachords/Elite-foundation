@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { PROGRAMS } from "@/lib/site-data";
-import { Reveal, SectionHeader } from "@/components/ui-bits";
+import { PROGRAMS, PAGE_HERO_IMAGES } from "@/lib/site-data";
+import { Reveal, SectionHeader, PageHero, CoverImage } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
@@ -20,12 +20,10 @@ export const Route = createFileRoute("/programs")({
 function ProgramsPage() {
   return (
     <div>
-      <section className="py-20 bg-gradient-brand text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-6xl font-extrabold max-w-3xl">Programs that change lives daily.</h1>
-          <p className="mt-4 text-lg text-white/90 max-w-2xl">Four active initiatives, one shared purpose — practical, sustained impact for the people who need it most.</p>
-        </div>
-      </section>
+      <PageHero images={PAGE_HERO_IMAGES.programs} alt="Elite Foundation programs in action">
+        <h1 className="text-5xl md:text-6xl font-extrabold max-w-3xl">Programs that change lives daily.</h1>
+        <p className="mt-4 text-lg text-white/90 max-w-2xl">Four active initiatives, one shared purpose — practical, sustained impact for the people who need it most.</p>
+      </PageHero>
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
@@ -33,7 +31,7 @@ function ProgramsPage() {
             <Reveal key={p.slug} delay={i * 0.05}>
               <div className={`grid md:grid-cols-2 gap-10 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}>
                 <div className="overflow-hidden rounded-3xl shadow-elegant">
-                  <img src={p.image} alt={p.title} className="w-full h-[420px] object-cover" loading="lazy" />
+                  <CoverImage src={p.image} alt={p.title} className="w-full h-[420px]" />
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-accent font-semibold">Program</div>

@@ -39,6 +39,7 @@ import type {
   VolunteerSubmission,
 } from "@/lib/api/types";
 import { IMAGES } from "@/lib/site-data";
+import { CoverImage } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -274,7 +275,7 @@ function ChildrenPanel({ children, onChanged }: { children: SponsoredChild[]; on
         <input value={age} onChange={(e) => setAge(e.target.value)} required type="number" min={1} max={18} placeholder="Age" className="w-full rounded-xl border border-input px-4 py-2.5" />
         <textarea value={story} onChange={(e) => setStory(e.target.value)} required rows={4} placeholder="Brief story" className="w-full rounded-xl border border-input px-4 py-2.5" />
         <input type="file" accept="image/*" onChange={handlePhoto} required className="w-full text-sm" />
-        {photo && <img src={photo} alt="" className="h-32 w-32 object-cover rounded-xl" />}
+        {photo && <CoverImage src={photo} alt="" className="h-32 w-32 rounded-xl" />}
         <button disabled={pending} className="rounded-full bg-primary text-primary-foreground px-6 py-2.5 font-semibold disabled:opacity-60">{pending ? "Saving..." : "Add child"}</button>
       </form>
       <div className="space-y-4">
@@ -306,7 +307,7 @@ function ChildCard({ child, onChanged }: { child: SponsoredChild; onChanged: () 
 
   return (
     <div className="rounded-2xl bg-card border border-border p-4 flex gap-4">
-      <img src={child.photo} alt={child.name} className="h-24 w-24 rounded-xl object-cover shrink-0" />
+      <CoverImage src={child.photo} alt={child.name} className="h-24 w-24 rounded-xl shrink-0" />
       <div className="flex-1 min-w-0">
         {editing ? (
           <div className="space-y-2">
@@ -513,7 +514,7 @@ function GalleryPanel({ gallery, onChanged }: { gallery: { url: string; cat: str
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {gallery.map((g, i) => (
           <div key={g.url + i} className="relative group rounded-xl overflow-hidden">
-            <img src={g.url} alt={g.cat} className="w-full h-36 object-cover" />
+            <CoverImage src={g.url} alt={g.cat} className="w-full h-36" />
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
               <span className="text-white text-xs font-semibold">{g.cat}</span>
               <button type="button" onClick={async () => { await adminDeleteGalleryPhoto({ data: { url: g.url } }); onChanged(); }} className="text-white bg-destructive rounded-full p-1.5"><Trash2 className="h-4 w-4" /></button>

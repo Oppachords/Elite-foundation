@@ -44,6 +44,14 @@ export const IMAGES = {
 
 export const HERO_IMAGES = [img1, img3, img5, img6, img8, img10, img11, img12, img13, img14];
 
+/** Page-specific hero carousels — prioritises photos not on the home hero. */
+export const PAGE_HERO_IMAGES = {
+  about: [img2, img7, img13],
+  impact: [img4, img9, img12],
+  stories: [img14, img9, img3],
+  programs: [img2, img11, img7],
+} as const;
+
 export const STATS = [
   { value: 800, suffix: "+", label: "Lives Impacted" },
   { value: 5, suffix: "+", label: "Communities Reached" },

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Heart, HeartHandshake, Users, GraduationCap, Stethoscope, Sprout, Quote } from "lucide-react";
 import { HERO_IMAGES, STATS, FOCUS_AREAS, PROGRAMS, STORIES, MISSION, VISION } from "@/lib/site-data";
-import { CountUp, Reveal, SectionHeader } from "@/components/ui-bits";
+import { CountUp, Reveal, SectionHeader, CoverImage } from "@/components/ui-bits";
 
 const ICONS: Record<string, typeof Heart> = { HeartHandshake, Users, GraduationCap, Stethoscope, Sprout };
 
@@ -112,7 +112,7 @@ function Home() {
           <Reveal delay={0.15}>
             <div className="grid grid-cols-2 gap-3">
               {HERO_IMAGES.slice(0, 4).map((src, i) => (
-                <img key={i} src={src} alt="Community work" className={`rounded-2xl object-cover w-full ${i % 2 === 0 ? "h-56 mt-8" : "h-56"} shadow-elegant`} loading="lazy" />
+                <CoverImage key={i} src={src} alt="Community work" className={`rounded-2xl w-full ${i % 2 === 0 ? "h-56 mt-8" : "h-56"} shadow-elegant`} />
               ))}
             </div>
           </Reveal>
@@ -185,7 +185,7 @@ function Home() {
             {STORIES.map((s, i) => (
               <Reveal key={s.name} delay={i * 0.08}>
                 <div className="h-full rounded-2xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-elegant transition-all">
-                  <img src={s.image} alt={s.name} className="w-full h-56 object-cover" loading="lazy" />
+                  <CoverImage src={s.image} alt={s.name} className="w-full h-56" />
                   <div className="p-6">
                     <Quote className="h-6 w-6 text-accent mb-3" />
                     <p className="text-foreground/90 italic leading-relaxed">"{s.quote}"</p>

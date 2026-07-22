@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { COMMUNITIES, COMMUNITIES_SERVED } from "@/lib/site-data";
-import { CountUp, Reveal, SectionHeader } from "@/components/ui-bits";
+import { COMMUNITIES, COMMUNITIES_SERVED, PAGE_HERO_IMAGES } from "@/lib/site-data";
+import { CountUp, Reveal, SectionHeader, PageHero } from "@/components/ui-bits";
 
 const IMPACT_NUMBERS = [
   { label: "Children Supported", value: 100 },
@@ -31,12 +31,10 @@ function ImpactPage() {
   const [hover, setHover] = useState<string | null>(null);
   return (
     <div>
-      <section className="py-20 bg-gradient-brand text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-6xl font-extrabold max-w-3xl">Impact you can count.</h1>
-          <p className="mt-4 text-lg text-white/90 max-w-2xl">Founded in April 2023, we serve vulnerable communities across Iganga, Kaliro, and Kampala.</p>
-        </div>
-      </section>
+      <PageHero images={PAGE_HERO_IMAGES.impact} alt="Elite Foundation impact across Uganda">
+        <h1 className="text-5xl md:text-6xl font-extrabold max-w-3xl">Impact you can count.</h1>
+        <p className="mt-4 text-lg text-white/90 max-w-2xl">Founded in April 2023, we serve vulnerable communities across Iganga, Kaliro, and Kampala.</p>
+      </PageHero>
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 gap-6">

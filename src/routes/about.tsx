@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, ShieldCheck, Users, Sun, HandHeart, Sparkles, Lightbulb, ClipboardCheck, Target, Eye, Calendar, MapPin } from "lucide-react";
-import { CORE_VALUES, TEAM, HERO_IMAGES, MISSION, VISION, COMMUNITIES_SERVED } from "@/lib/site-data";
-import { Reveal, SectionHeader } from "@/components/ui-bits";
+import { CORE_VALUES, TEAM, HERO_IMAGES, MISSION, VISION, COMMUNITIES_SERVED, PAGE_HERO_IMAGES } from "@/lib/site-data";
+import { Reveal, SectionHeader, CoverImage, PageHero } from "@/components/ui-bits";
 
 const ICONS: Record<string, typeof Heart> = { Heart, ShieldCheck, Users, Sun, HandHeart, Sparkles, Lightbulb, ClipboardCheck };
 
@@ -22,22 +22,18 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <div>
-      <section className="relative py-24 bg-gradient-brand text-white overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="text-xs uppercase tracking-[0.25em] text-white/80">About Us</div>
-            <h1 className="mt-3 text-5xl md:text-6xl font-extrabold max-w-3xl">People-first. Community-led. Uganda-rooted.</h1>
-            <p className="mt-5 max-w-2xl text-white/90 text-lg">
-              Elite Foundation empowers vulnerable communities in Uganda through outreach, education,
-              health services, and youth empowerment — founded 4 April 2023 in Kampala.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-4 text-sm">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2"><Calendar className="h-4 w-4" /> Founded 4 April 2023</span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2"><MapPin className="h-4 w-4" /> Kampala, Uganda</span>
-            </div>
-          </Reveal>
+      <PageHero images={PAGE_HERO_IMAGES.about} alt="Elite Foundation team and community outreach">
+        <div className="text-xs uppercase tracking-[0.25em] text-white/80">About Us</div>
+        <h1 className="mt-3 text-5xl md:text-6xl font-extrabold max-w-3xl">People-first. Community-led. Uganda-rooted.</h1>
+        <p className="mt-5 max-w-2xl text-white/90 text-lg">
+          Elite Foundation empowers vulnerable communities in Uganda through outreach, education,
+          health services, and youth empowerment — founded 4 April 2023 in Kampala.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-4 text-sm">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2"><Calendar className="h-4 w-4" /> Founded 4 April 2023</span>
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2"><MapPin className="h-4 w-4" /> Kampala, Uganda</span>
         </div>
-      </section>
+      </PageHero>
 
       {/* Mission / Vision */}
       <section className="py-24">
@@ -69,7 +65,7 @@ function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {HERO_IMAGES.map((src, i) => (
               <Reveal key={src} delay={i * 0.05}>
-                <img src={src} alt="Community" className="w-full h-48 md:h-64 object-cover rounded-2xl" loading="lazy" />
+                <CoverImage src={src} alt="Community" className="w-full h-48 md:h-64 rounded-2xl" />
               </Reveal>
             ))}
           </div>
@@ -120,9 +116,9 @@ function About() {
             {TEAM.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.05}>
                 <div className="text-center">
-                  <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-brand flex items-center justify-center">
+                  <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-brand flex items-center justify-center">
                     {m.image ? (
-                      <img src={m.image} alt={m.name} className="w-full h-full object-cover" loading="lazy" />
+                      <CoverImage src={m.image} alt={m.name} className="w-full h-full" />
                     ) : (
                       <div className="text-white text-5xl font-extrabold">{m.initials}</div>
                     )}

@@ -4,7 +4,7 @@ import { CheckCircle2, Heart } from "lucide-react";
 import { useSponsoredChildren } from "@/lib/use-site-content";
 import { submitDonation, fileToDataUrl } from "@/lib/api/cms.functions";
 import { CONTACT, IMAGES } from "@/lib/site-data";
-import { Reveal, SectionHeader } from "@/components/ui-bits";
+import { Reveal, SectionHeader, CoverImage } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/sponsor-a-child")({
   head: () => ({
@@ -98,8 +98,8 @@ function ChildCard({ child }: { child: Child }) {
 
   return (
     <article className="rounded-3xl overflow-hidden bg-card border border-border hover:shadow-elegant transition-all">
-      <div className="aspect-[4/5] overflow-hidden">
-        <img src={child.photo} alt={child.name} className="w-full h-full object-cover" loading="lazy" />
+      <div className="aspect-[3/4] overflow-hidden">
+        <CoverImage src={child.photo} alt={child.name} className="w-full h-full" />
       </div>
       <div className="p-6">
         <h3 className="text-xl font-extrabold">{child.name}</h3>

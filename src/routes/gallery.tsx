@@ -52,7 +52,7 @@ function GalleryPage() {
             {items.map((g, i) => (
               <Reveal key={g.url + i} delay={i * 0.03}>
                 <button onClick={() => setLightbox(g.url)} className="block w-full break-inside-avoid overflow-hidden rounded-2xl group">
-                  <img src={g.url} alt={g.cat} className="w-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <img src={g.url} alt={g.cat} className="w-full h-auto block group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </button>
               </Reveal>
             ))}
