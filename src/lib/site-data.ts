@@ -72,6 +72,7 @@ export const VISION =
 export const COMMUNITIES_SERVED = [
   "Rural families in Iganga and Kaliro districts",
   "School-going children in Iganga",
+  "Agape Parents Primary School",
   "Persons with disabilities and elderly without care",
   "Vulnerable youth in Kaliro district",
 ];
