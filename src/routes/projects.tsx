@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { useProjects } from "@/lib/use-site-content";
-import { Reveal } from "@/components/ui-bits";
+import { Reveal, CoverImage } from "@/components/ui-bits";
 
 const STATUS_STYLE: Record<string, string> = {
   Upcoming: "bg-accent/15 text-accent",
@@ -41,9 +41,14 @@ function ProjectsPage() {
             const pct = Math.round((p.raised / p.budget) * 100);
             return (
               <Reveal key={p.slug} delay={i * 0.05}>
-                <article className="group h-full rounded-3xl overflow-hidden bg-card border border-border hover:shadow-elegant transition-all">
+                <article className="group h-full rounded-3xl overflow-hidden bg-card border border-border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elegant hover:border-accent/30">
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <img src={p.hero} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <CoverImage
+                      src={p.hero}
+                      alt={p.title}
+                      className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <span className={`absolute top-4 left-4 text-xs font-semibold uppercase tracking-wider rounded-full px-3 py-1 ${STATUS_STYLE[p.status]}`}>{p.status}</span>
                   </div>
                   <div className="p-6">
@@ -64,7 +69,12 @@ function ProjectsPage() {
                     {p.gallery.length > 1 && (
                       <div className="mt-4 flex gap-2">
                         {p.gallery.slice(1, 4).map((g, gi) => (
-                          <img key={gi} src={g} alt="" className="h-16 w-20 object-cover rounded-lg" loading="lazy" />
+                          <div
+                            key={gi}
+                            className="group/thumb h-16 w-20 overflow-hidden rounded-lg ring-1 ring-border transition-all duration-300 hover:ring-2 hover:ring-accent/60 hover:scale-105"
+                          >
+                            <CoverImage src={g} alt="" className="h-full w-full transition-transform duration-500 group-hover/thumb:scale-110" />
+                          </div>
                         ))}
                       </div>
                     )}

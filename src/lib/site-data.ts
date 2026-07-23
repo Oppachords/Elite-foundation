@@ -159,8 +159,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "kaliro-youth-skills",
     title: "Kaliro Youth Skill Workshop",
-    hero: img5,
-    gallery: [img5, img3, img11],
+    hero: img15,
+    gallery: [img15, img3, img11],
     location: "Kaliro District",
     budget: 900,
     raised: 350,
@@ -181,8 +181,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "girls-back-to-school",
     title: "Girls in School — Iganga",
-    hero: img8,
-    gallery: [img8, img4, img14],
+    hero: img16,
+    gallery: [img16, img4, img14],
     location: "Iganga",
     budget: 1000,
     raised: 420,
